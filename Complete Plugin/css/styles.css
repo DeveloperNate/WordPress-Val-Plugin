@@ -1,0 +1,119 @@
+.textcontainer { /*allows us to change the text size, font and background colour*/
+    background-color: #fff;
+    width : 300px;
+    height : 100px;
+    text-align: center;
+    font-family: 'bebas', sans-serif;
+    font-size: 48px;
+  
+  }
+
+  .hearts{
+    position: relative; 
+  /* static - won't work because we use top and left in the append span containers / absolute - won't work because we want it to be positioned in its normal place / fixed - we don't want it fixed / sticky could work thou  */
+  }
+
+  .hearts > .particle { 
+    opacity: 0; /* all hearts start off transparent then change from animation */
+    position: absolute; /* we want to use left and top to direct the position. Not the its positioned ancestors*/
+    background-color: #cc2a5d; /* colour of the heart */
+    transform: rotate(45deg); /* turn to make it look like a diamond shape */
+  
+  }
+
+  .hearts > .particle:before, .hearts > .particle:after {
+    position: absolute; /*  we want to use left and top to direct the position. Not the its positioned ancestors*/
+    content: ''; /*  when we add a before and after, we  need to add content. Even if we don't want it.*/
+    border-radius: 100px; /* making it into a circle.*/
+    top: 0px; /* positioning it in the same place as our heart */
+    left: 0px; /* positioning it in the same place as our heart */
+    width: 100%; /* making it the same size as our heart */
+    height: 100%; /* making it the same size as our heart */
+    background-color: #cc2a5d; /* making it the same colour as our heart */
+  }
+  
+  .hearts > .particle:before { /* moving the first circle along the x axis  */
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+  }
+  .hearts > .particle:after { /* moving the first circle along the x axis  */
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+  }
+
+  .hearts.fading > .particle {
+       -webkit-animation: heartFade 7s ease-in infinite; /* for safari */
+        animation: heartFade 7s ease-in infinite;
+}
+
+.hearts.rain > .particle {
+    -webkit-animation: heartRain 7s ease-in infinite;  /* for safari */
+        animation: heartRain 7s ease-in infinite;
+}
+
+.hearts.rotate> .particle {
+  
+    -webkit-animation:spin 7s linear infinite; /* for safari */
+   animation:spin 7s linear infinite;
+}
+
+@-webkit-keyframes heartFade { /* for safari */
+    0%,100% { opacity: 0; }
+    50% { opacity: 0.8; }
+  }
+  
+  @keyframes heartFade{
+    0%,100% { opacity: 0; }
+    50% { opacity: 0.8; }
+  }
+
+  @-webkit-keyframes heartRain {
+    0% {
+      opacity: 0;
+      -webkit-transform: translate(0, 0%) rotate(45deg);/* for safari */
+            
+    }
+    20% {
+      opacity: 0.8;
+      -webkit-transform: translate(0, -20%) rotate(45deg);
+              
+    }
+    100% {
+      opacity: 0;
+      -webkit-transform: translate(0, -1000%) rotate(45deg);
+              
+    }
+  }
+  @keyframes heartRain {
+    0% {
+      opacity: 0;
+      transform: translate(0, 0%) rotate(45deg);
+    }
+    20% {
+      opacity: 0.8;
+      transform: translate(0, -20%) rotate(45deg);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(0, -1000%) rotate(45deg);
+    }
+  }
+
+  @-webkit-keyframes spin {
+    0%{opacity: 0;}
+    50%{opacity: 0.8;}
+    100% {
+       opacity: 0.2;
+      -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+    0%{opacity: 0;}
+    50%{opacity: 0.8;}
+    100% {
+      opacity: 0.2;
+      transform:rotate(360deg);}
+}
+
+
+  
+  
